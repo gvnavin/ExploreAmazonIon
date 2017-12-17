@@ -4,9 +4,10 @@ import com.opencsv.CSVReader;
 import software.amazon.ion.IonWriter;
 
 import java.io.ByteArrayOutputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-
+import java.io.OutputStream;
 
 /**
  * Created by gnavin on 5/14/17.
@@ -23,6 +24,11 @@ public class CsvToIonWithSymbolTableMain {
         try (IonWriter binaryWriter = Utils.SYSTEM.newBinaryWriter(out)) {
             Utils.convertCsvToIon(binaryWriter, csvReader);
         }
+    
+        try(OutputStream outputStream = new FileOutputStream("ionBinaryFile.ion")) {
+            out.writeTo(outputStream);
+        }
+        
         Utils.printIon(out);
     }
 }

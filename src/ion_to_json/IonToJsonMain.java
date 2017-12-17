@@ -15,12 +15,12 @@ public class IonToJsonMain {
 
     static final IonSystem SYSTEM = IonSystemBuilder.standard().build();
 
-    static final String textIon = "{ data:annot::{ foo:null.string, bar:(2 + 2) }, time:1969-07-20T20:18Z }";
+    static final String TEXT_ION = "{ data:annot::{ foo:null.string, bar:(2 + 2) }, time:1969-07-20T20:18Z }";
 
     public static void main(String[] args) throws IOException {
         final StringBuilder stringBuilder = new StringBuilder();
         try (final IonWriter jsonWriter = IonTextWriterBuilder.json().withPrettyPrinting().build(stringBuilder)) {
-            rewrite(textIon, jsonWriter);
+            rewrite(TEXT_ION, jsonWriter);
         }
         System.out.println(stringBuilder.toString());
     }
